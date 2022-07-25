@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
 #include <fstream>
+#include <math.h>
+#include <corecrt_math_defines.h>
 using namespace std;
 enum type { rect, cir };
 class Figure
@@ -13,6 +15,7 @@ public:
 	 type getKey();
 	virtual void writeFigure(std::ofstream& stream)=0;
 	virtual void readFigure(std::ifstream& stream)=0;
+	virtual double perimetr() = 0;
 };
 class Rectangle :public Figure
 {
@@ -25,6 +28,7 @@ public:
 	int* getRightDown();
 	void writeFigure(std::ofstream& stream);
 	void readFigure(std::ifstream& stream);
+	double perimetr();
 };
 class Circle : public Figure
 {
@@ -38,6 +42,7 @@ public:
 	int getRadius();
 	void writeFigure(std::ofstream& stream);
 	void readFigure(std::ifstream& stream);
+	double perimetr();
 };
 
 
@@ -57,6 +62,7 @@ public:
 	Element* getPrev();
 	void writeElement(std::ofstream& stream);
 	int readElement(std::ifstream& stream);
+	
 };
 
 
