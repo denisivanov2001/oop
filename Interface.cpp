@@ -137,6 +137,11 @@ void Element::writeElement(std::ofstream& stream)
 		((Circle*)this->itFigure)->writeFigure(stream);
 		break;
 	}
+	case tri:
+	{
+		((Triangle*)this->itFigure)->writeFigure(stream);
+		break;
+	}
 	default:
 		break;
 	}
@@ -159,6 +164,11 @@ int Element::readElement(std::ifstream& stream)
 	{
 		this->itFigure = new Circle();
 		
+		break;
+	}
+	case 't':
+	{
+		this->itFigure = new Triangle();
 		break;
 	}
 	default:
@@ -252,4 +262,44 @@ void List::clear()
 		curEl = this->head;
 	}
 	this->size = 0;
+}
+
+Triangle::Triangle()
+{
+	color = "";
+}
+
+int* Triangle::getFirst()
+{
+	return first;
+}
+
+int* Triangle::getSecond()
+{
+	return second;
+}
+
+int* Triangle::getThird()
+{
+	return third;
+}
+
+void Triangle::writeFigure(std::ofstream& stream)
+{
+	stream << "First " << this->first[0] << " " << this->first[1] << "\n";
+	stream << "Second " << this->second[0] << " " << this->second[1] << "\n";
+	stream << "Third " << this->third[0] << " " << this->third[1] << "\n";
+	stream << "Color " << this->color << "\n";
+}
+
+void Triangle::readFigure(std::ifstream& stream)
+{
+	this->key = tri;
+	stream >> this->first[0];
+	stream >> this->first[1];
+	stream >> this->second[0];
+	stream >> this->second[1];
+	stream >> this->third[0];
+	stream >> this->third[1];
+	stream >> this->color;
 }
