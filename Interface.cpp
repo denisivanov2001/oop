@@ -38,7 +38,8 @@ void Rectangle::readFigure(std::ifstream& stream)
 
 double Rectangle::perimetr()
 {
-	return (this->leftUp[0]-this->rightDown[0])*(this->rightDown[1]-this->leftUp[1]);
+	return 2 * (leftUp[0] - rightDown[0]) +
+		(rightDown[1] - leftUp[1]);;
 }
 
 Circle::Circle()
@@ -149,6 +150,11 @@ void Element::writeElement(std::ofstream& stream)
 		((Circle*)this->itFigure)->writeFigure(stream);
 		break;
 	}
+	case tri:
+	{
+		((Triangle*)this->itFigure)->writeFigure(stream);
+		break;
+	}
 	default:
 		break;
 	}
@@ -172,6 +178,11 @@ int Element::readElement(std::ifstream& stream)
 	{
 		this->itFigure = new Circle();
 		
+		break;
+	}
+	case 't':
+	{
+		this->itFigure = new Triangle();
 		break;
 	}
 	default:
@@ -286,6 +297,16 @@ void List::writeCir(std::ofstream& stream)
 		curEl = curEl->getNext();
 	}
 }
+void List::writeTri(std::ofstream& stream)
+{
+	auto curEl = this->head;
+	for (int i = 0; i < this->size; i++)
+	{
+		if (curEl->getItFigure()->getKey() == tri)
+			curEl->writeElement(stream);
+		curEl = curEl->getNext();
+	}
+}
 
 void List::clear()
 {
@@ -324,4 +345,57 @@ List* List::sort()
 		newList->pushBack( min);
 	}
 	return newList;
+}
+Triangle::Triangle()
+{
+	color = "";
+}
+
+int* Triangle::getFirst()
+{
+	return first;
+}
+
+int* Triangle::getSecond()
+{
+	return second;
+}
+
+int* Triangle::getThird()
+{
+	return third;
+}
+
+void Triangle::writeFigure(std::ofstream& stream)
+{
+	stream << "First " << this->first[0] << " " << this->first[1] << "\n";
+	stream << "Second " << this->second[0] << " " << this->second[1] << "\n";
+	stream << "Third " << this->third[0] << " " << this->third[1] << "\n";
+	stream << "Color " << this->color << "\n";
+	stream << "Density " << density << "\n";
+}
+
+void Triangle::readFigure(std::ifstream& stream)
+{
+	this->key = tri;
+	stream >> this->first[0];
+	stream >> this->first[1];
+	stream >> this->second[0];
+	stream >> this->second[1];
+	stream >> this->third[0];
+	stream >> this->third[1];
+	stream >> this->color;
+	stream >> this->density;
+}
+
+double Triangle::perimetr()
+{
+	double firstShade, secondShade, thirdShade;
+	firstShade = sqrt((pow(first[0] - second[0], 2)
+		+ pow(first[1] - second[1], 2)));
+	secondShade = sqrt((pow(first[0] - third[0], 2)
+		+ pow(first[1] - third[1], 2)));
+	thirdShade = sqrt((pow(third[0] - second[0], 2)
+		+ pow(third[1] - second[1], 2)));
+	return firstShade + secondShade + thirdShade;
 }

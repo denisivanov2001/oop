@@ -1,0 +1,105 @@
+List:
+Num 6
+0: Left up x: 3 Left up y: -9
+Right down x: 8 Right down y: 5
+Color Red
+Density 2.36
+Perimetr -70
+1: Center: 9 6
+Radius 78
+Color Blue
+Density 8.69
+Perimetr 490.088
+2: First 8 9
+Second 5 6
+Third 7 4
+Color Red
+Density 8.26
+Perimetr 12.1701
+3: Left up x: 9 Left up y: 9
+Right down x: 9 Right down y: 9
+Color Yellow
+Density 9.58
+Perimetr 0
+4: Center: 9 9
+Radius 0
+Color Green
+Density 0.3
+Perimetr 0
+5: First 7 8
+Second 9 6
+Third 5 2
+Color Green
+Density 4.26
+Perimetr 14.8098
+Sorted:
+Num 6
+0: Left up x: 3 Left up y: -9
+Right down x: 8 Right down y: 5
+Color Red
+Density 2.36
+Perimetr -70
+1: Left up x: 9 Left up y: 9
+Right down x: 9 Right down y: 9
+Color Yellow
+Density 9.58
+Perimetr 0
+2: Center: 9 9
+Radius 0
+Color Green
+Density 0.3
+Perimetr 0
+3: First 8 9
+Second 5 6
+Third 7 4
+Color Red
+Density 8.26
+Perimetr 12.1701
+4: First 7 8
+Second 9 6
+Third 5 2
+Color Green
+Density 4.26
+Perimetr 14.8098
+5: Center: 9 6
+Radius 78
+Color Blue
+Density 8.69
+Perimetr 490.088
+Rectangle:
+Left up x: 3 Left up y: -9
+Right down x: 8 Right down y: 5
+Color Red
+Density 2.36
+Perimetr -70
+Left up x: 9 Left up y: 9
+Right down x: 9 Right down y: 9
+Color Yellow
+Density 9.58
+Perimetr 0
+Circle:
+Center: 9 9
+Radius 0
+Color Green
+Density 0.3
+Perimetr 0
+Center: 9 6
+Radius 78
+Color Blue
+Density 8.69
+Perimetr 490.088
+Triangle:
+First 8 9
+Second 5 6
+Third 7 4
+Color Red
+Density 8.26
+Perimetr 12.1701
+First 7 8
+Second 9 6
+Third 5 2
+Color Green
+Density 4.26
+Perimetr 14.8098
+Delete list:
+Num 0

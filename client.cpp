@@ -13,16 +13,17 @@ int main()
 	clientList->readList( read);
 	write << "List:\n";
 	clientList->writeList( write);
-<<<<<<< HEAD
+
 	write << "Sorted:\n";
 	clientList = clientList->sort();
 	clientList->writeList(write);
-=======
+
 	write << "Rectangle:\n";
 	clientList->writeRect(write);
 	write << "Circle:\n";
 	clientList->writeCir(write);
->>>>>>> ignore
+	write << "Triangle:\n";
+	clientList->writeTri(write);
 	write << "Delete list:\n";
 	clientList->clear();
 	clientList->writeList( write);

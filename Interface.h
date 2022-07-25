@@ -4,7 +4,7 @@
 #include <math.h>
 #include <corecrt_math_defines.h>
 using namespace std;
-enum type { rect, cir };
+enum type { rect, cir,tri };
 class Figure
 {
 protected:
@@ -45,7 +45,20 @@ public:
 	void readFigure(std::ifstream& stream);
 	double perimetr();
 };
-
+class Triangle : public Figure
+{
+	int first[2];
+	int second[2];
+	int third[2];
+public:
+	Triangle();
+	int* getFirst();
+	int* getSecond();
+	int* getThird();
+	void writeFigure(std::ofstream& stream);
+	void readFigure(std::ifstream& stream);
+	double perimetr();
+};
 
 class Element
 {
@@ -85,6 +98,7 @@ public:
 	void writeList(std::ofstream& stream);
 	void writeRect(std::ofstream& stream);
 	void writeCir(std::ofstream& stream);
+	void writeTri(std::ofstream& stream);
 	void clear();
 	List* sort();
 };
