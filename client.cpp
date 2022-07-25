@@ -13,6 +13,10 @@ int main()
 	clientList->readList( read);
 	write << "List:\n";
 	clientList->writeList( write);
+	write << "Rectangle:\n";
+	clientList->writeRect(write);
+	write << "Circle:\n";
+	clientList->writeCir(write);
 	write << "Delete list:\n";
 	clientList->clear();
 	clientList->writeList( write);

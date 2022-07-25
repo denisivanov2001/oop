@@ -76,5 +76,7 @@ public:
 	void pushFirst(Element* newElement);
 	void readList(std::ifstream& stream);
 	void writeList(std::ofstream& stream);
+	void writeRect(std::ofstream& stream);
+	void writeCir(std::ofstream& stream);
 	void clear();
 };

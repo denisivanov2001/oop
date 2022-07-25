@@ -242,6 +242,28 @@ void List::writeList(std::ofstream& stream)
 	}
 }
 
+void List::writeRect(std::ofstream& stream)
+{
+	auto curEl = this->head;
+	for (int i = 0; i < this->size; i++)
+	{
+		if(curEl->getItFigure()->getKey()==rect)
+		curEl->writeElement(stream);
+		curEl = curEl->getNext();
+	}
+}
+
+void List::writeCir(std::ofstream& stream)
+{
+	auto curEl = this->head;
+	for (int i = 0; i < this->size; i++)
+	{
+		if (curEl->getItFigure()->getKey() == cir)
+			curEl->writeElement(stream);
+		curEl = curEl->getNext();
+	}
+}
+
 void List::clear()
 {
 	auto curEl = this->head;
