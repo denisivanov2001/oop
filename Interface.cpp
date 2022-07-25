@@ -36,6 +36,11 @@ void Rectangle::readFigure(std::ifstream& stream)
 	stream >> this->density;
 }
 
+double Rectangle::perimetr()
+{
+	return (this->leftUp[0]-this->rightDown[0])*(this->rightDown[1]-this->leftUp[1]);
+}
+
 Circle::Circle()
 {
 	
@@ -69,6 +74,11 @@ void Circle::readFigure(std::ifstream& stream)
 	stream >> this->radius;
 	stream >> this->color;
 	stream >> this->density;
+}
+
+double Circle::perimetr()
+{
+	return 2.0*M_PI*this->radius;
 }
 
 
@@ -142,6 +152,7 @@ void Element::writeElement(std::ofstream& stream)
 	default:
 		break;
 	}
+	stream<<"Perimetr "<<this->itFigure->perimetr()<<"\n";
 	return;
 }
 
@@ -168,6 +179,16 @@ int Element::readElement(std::ifstream& stream)
 	}
 	this->itFigure->readFigure(stream);
 	return 1;
+}
+
+int Element::equ(Element* second)
+{
+	if (this->itFigure->perimetr() > second->itFigure->perimetr())
+		return 1;
+	else if (this->itFigure->perimetr() < second->itFigure->perimetr())
+		return -1;
+	else
+		return 0;
 }
 
 List::List()
@@ -254,4 +275,31 @@ void List::clear()
 		curEl = this->head;
 	}
 	this->size = 0;
+}
+
+List* List::sort()
+{
+	List* newList = new List();
+	while (this->size != 0)
+	{
+		Element* min = this->head;
+		Element* cur = this->head;
+		while (cur != nullptr)
+		{
+			if (cur->equ( min) == -1)
+				min = cur;
+			cur = cur->getNext();
+		}
+		if (min->getPrev() != nullptr)
+			min->getPrev()->setNext(min->getNext())  ;
+		if (min->getNext() != nullptr)
+			min->getNext()->setPrev(min->getPrev())  ;
+		if (min == this->head)
+			this->head = min->getNext();
+		if (min == this->tail)
+			this->tail = min->getPrev();
+		this->size--;
+		newList->pushBack( min);
+	}
+	return newList;
 }

@@ -13,6 +13,9 @@ int main()
 	clientList->readList( read);
 	write << "List:\n";
 	clientList->writeList( write);
+	write << "Sorted:\n";
+	clientList = clientList->sort();
+	clientList->writeList(write);
 	write << "Delete list:\n";
 	clientList->clear();
 	clientList->writeList( write);
