@@ -2,12 +2,13 @@
 #include <string>
 #include <fstream>
 using namespace std;
-enum type { rect, cir ,tri};
+enum type { rect, cir };
 class Figure
 {
 protected:
 	type key;
 	std::string color;
+	double density;
 public:
 	 string getColor();
 	 type getKey();
@@ -39,19 +40,7 @@ public:
 	void writeFigure(std::ofstream& stream);
 	void readFigure(std::ifstream& stream);
 };
-class Triangle : public Figure
-{
-	int first[2];
-	int second[2];
-	int third[2];
-public:
-	Triangle();
-	int* getFirst();
-	int* getSecond();
-	int* getThird();
-	void writeFigure(std::ofstream& stream);
-	void readFigure(std::ifstream& stream);
-};
+
 
 class Element
 {

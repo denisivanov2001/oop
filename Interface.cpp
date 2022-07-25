@@ -21,6 +21,7 @@ void Rectangle::writeFigure(std::ofstream& stream)
 	stream << "Left up x: " << this->leftUp[0] << " Left up y: " << this->leftUp[1] << "\n";
 	stream << "Right down x: " << this->rightDown[0] << " Right down y: " << this->rightDown[1] << "\n";
 	stream << "Color " << this->color << "\n";
+	stream << "Density " << this->density << "\n";
 	return;
 }
 
@@ -32,7 +33,7 @@ void Rectangle::readFigure(std::ifstream& stream)
 	stream >> this->rightDown[0];
 	stream >> this->rightDown[1];
 	stream >> this->color;
-	
+	stream >> this->density;
 }
 
 Circle::Circle()
@@ -56,6 +57,7 @@ void Circle::writeFigure(std::ofstream& stream)
 	stream << "Center: " << this->center[0] << " " << this->center[1] << "\n";
 	stream << "Radius " << this->radius << "\n";
 	stream << "Color " << this->color << "\n";
+	stream << "Density " << this->density << "\n";
 }
 
 void Circle::readFigure(std::ifstream& stream)
@@ -66,7 +68,7 @@ void Circle::readFigure(std::ifstream& stream)
 	stream >> this->center[1];
 	stream >> this->radius;
 	stream >> this->color;
-	
+	stream >> this->density;
 }
 
 
@@ -137,11 +139,6 @@ void Element::writeElement(std::ofstream& stream)
 		((Circle*)this->itFigure)->writeFigure(stream);
 		break;
 	}
-	case tri:
-	{
-		((Triangle*)this->itFigure)->writeFigure(stream);
-		break;
-	}
 	default:
 		break;
 	}
@@ -164,11 +161,6 @@ int Element::readElement(std::ifstream& stream)
 	{
 		this->itFigure = new Circle();
 		
-		break;
-	}
-	case 't':
-	{
-		this->itFigure = new Triangle();
 		break;
 	}
 	default:
@@ -262,44 +254,4 @@ void List::clear()
 		curEl = this->head;
 	}
 	this->size = 0;
-}
-
-Triangle::Triangle()
-{
-	color = "";
-}
-
-int* Triangle::getFirst()
-{
-	return first;
-}
-
-int* Triangle::getSecond()
-{
-	return second;
-}
-
-int* Triangle::getThird()
-{
-	return third;
-}
-
-void Triangle::writeFigure(std::ofstream& stream)
-{
-	stream << "First " << this->first[0] << " " << this->first[1] << "\n";
-	stream << "Second " << this->second[0] << " " << this->second[1] << "\n";
-	stream << "Third " << this->third[0] << " " << this->third[1] << "\n";
-	stream << "Color " << this->color << "\n";
-}
-
-void Triangle::readFigure(std::ifstream& stream)
-{
-	this->key = tri;
-	stream >> this->first[0];
-	stream >> this->first[1];
-	stream >> this->second[0];
-	stream >> this->second[1];
-	stream >> this->third[0];
-	stream >> this->third[1];
-	stream >> this->color;
 }
