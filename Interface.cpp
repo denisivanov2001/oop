@@ -179,6 +179,16 @@ int Element::readElement(std::ifstream& stream)
 	return 1;
 }
 
+int Element::equ(Element* second)
+{
+	if (this->itFigure->perimetr() > second->itFigure->perimetr())
+		return 1;
+	else if (this->itFigure->perimetr() < second->itFigure->perimetr())
+		return -1;
+	else
+		return 0;
+}
+
 List::List()
 {
 	this->head = nullptr;
@@ -263,4 +273,31 @@ void List::clear()
 		curEl = this->head;
 	}
 	this->size = 0;
+}
+
+List* List::sort()
+{
+	List* newList = new List();
+	while (this->size != 0)
+	{
+		Element* min = this->head;
+		Element* cur = this->head;
+		while (cur != nullptr)
+		{
+			if (cur->equ( min) == -1)
+				min = cur;
+			cur = cur->getNext();
+		}
+		if (min->getPrev() != nullptr)
+			min->getPrev()->setNext(min->getNext())  ;
+		if (min->getNext() != nullptr)
+			min->getNext()->setPrev(min->getPrev())  ;
+		if (min == this->head)
+			this->head = min->getNext();
+		if (min == this->tail)
+			this->tail = min->getPrev();
+		this->size--;
+		newList->pushBack( min);
+	}
+	return newList;
 }

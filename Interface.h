@@ -62,7 +62,7 @@ public:
 	Element* getPrev();
 	void writeElement(std::ofstream& stream);
 	int readElement(std::ifstream& stream);
-	
+	int equ(Element* second);
 };
 
 
@@ -83,4 +83,5 @@ public:
 	void readList(std::ifstream& stream);
 	void writeList(std::ofstream& stream);
 	void clear();
+	List* sort();
 };
